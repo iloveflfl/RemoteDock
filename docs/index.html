@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RemoteDock: a Windows personal device dock for SSH-capable machines." />
+  <title>RemoteDock</title>
+  <style>
+    :root {
+      --bg:#f6f5f1; --card:#ffffff; --muted:#f0efea; --ink:#23211e; --soft:#6b6963;
+      --border:#e2e0d9; --accent:#c2613e; --accent2:#ad5231; --green:#2ea05f; --red:#d03a3a;
+      --shadow:0 20px 60px rgba(35,33,30,.10);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 20% 0%,#fff 0,#f6f5f1 42%,#ece9e1 100%);color:var(--ink);font-family:Inter,Segoe UI,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 22px 72px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:56px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}.logo{width:42px;height:42px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow);font-size:22px}
+    .lang{display:flex;gap:8px;background:rgba(255,255,255,.75);border:1px solid var(--border);padding:6px;border-radius:999px;box-shadow:0 8px 26px rgba(35,33,30,.06)}
+    .lang button{border:0;background:transparent;color:var(--soft);font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer}.lang button.active{background:var(--ink);color:white}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:rgba(255,255,255,.72);padding:8px 12px;border-radius:999px;color:var(--soft);font-size:14px}
+    h1{font-size:clamp(38px,6vw,72px);line-height:.96;letter-spacing:-.07em;margin:18px 0 18px} .lead{font-size:clamp(17px,2.2vw,22px);color:var(--soft);max-width:760px;margin:0 0 26px}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:13px 18px;font-weight:800;border:1px solid var(--border);background:white;color:var(--ink);box-shadow:0 10px 30px rgba(35,33,30,.06)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{background:var(--accent2);text-decoration:none}.btn:hover{text-decoration:none;transform:translateY(-1px)}
+    .mock{background:#161514;color:#f8f2e9;border-radius:24px;padding:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08)}.mockTop{display:flex;gap:7px;margin-bottom:16px}.dot{width:10px;height:10px;border-radius:50%}.r{background:#f36b5d}.y{background:#f5be4f}.g{background:#62c46b}.device{background:#211f1d;border:1px solid #38332e;border-radius:18px;padding:14px;margin:10px 0}.device b{display:flex;align-items:center;gap:8px}.status{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}.bar{font-family:Cascadia Mono,Consolas,monospace;color:#e7d4c9}.bar span{color:#c2613e}.cat{font-family:Cascadia Mono,Consolas,monospace;white-space:pre;color:#f4eadf;text-align:center;margin:16px 0 4px;font-size:16px}
+    section{margin-top:62px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}h2{font-size:32px;letter-spacing:-.04em;margin:0}.sub{color:var(--soft);margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(255,255,255,.82);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:0 10px 36px rgba(35,33,30,.06)}.card h3{margin:0 0 8px;font-size:18px}.card p{margin:0;color:var(--soft)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stepNum{width:34px;height:34px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:12px}.code{background:#171614;color:#efe7df;border-radius:18px;padding:18px;overflow:auto;border:1px solid #282420}.code code{font-family:Cascadia Mono,Consolas,monospace;white-space:pre}
+    footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.ko,.en{display:none}.lang-ko .ko{display:revert}.lang-en .en{display:revert}
+    @media(max-width:860px){.hero,.grid,.steps{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.wrap{padding-top:20px}}
+  </style>
+</head>
+<body class="lang-en">
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="logo">R</div><div>RemoteDock</div></div>
+      <div class="lang" aria-label="Language switch">
+        <button id="btn-ko" type="button">한국어</button>
+        <button id="btn-en" type="button" class="active">English</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div>
+          <div class="pill ko">🐈 SSH 장비를 한 화면에서 도킹</div>
+          <div class="pill en">🐈 Dock SSH-capable devices from one screen</div>
+          <h1 class="ko">라즈베리파이와 서버를<br/>USB처럼 다루는<br/>개인 장비 허브</h1>
+          <h1 class="en">A personal dock for<br/>Raspberry Pis,<br/>servers, and SSH devices</h1>
+          <p class="lead ko">RemoteDock는 Windows에서 SSH 장비를 등록하고, 상태를 감지하고, SSHFS-Win으로 드라이브를 마운트하고, 터미널·VS Code·웹·명령 프리셋·백업까지 연결하는 개인 서버 도킹 앱입니다.</p>
+          <p class="lead en">RemoteDock lets you register SSH-capable devices, monitor their status, mount them with SSHFS-Win, and jump into Explorer, Terminal, VS Code, web URLs, command presets, and backups.</p>
+          <div class="actions">
+            <a class="btn primary" href="../README.ko.md"><span class="ko">README 보기</span><span class="en">Read README</span></a>
+            <a class="btn" href="../RELEASE_NOTES.md"><span class="ko">릴리즈 노트</span><span class="en">Release Notes</span></a>
+            <a class="btn" href="../CLAUDE_HANDOFF.md"><span class="ko">개발 인수 문서</span><span class="en">Handoff Notes</span></a>
+          </div>
+        </div>
+        <div class="mock" aria-label="RemoteDock visual preview">
+          <div class="mockTop"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+          <div class="device"><b><span class="status"></span> PiHome · R:</b><div class="bar">CPU 12% <span>■</span>□□□□  RAM 38% <span>■■</span>□□□  DISK 03% <span>■</span>□□□□</div></div>
+          <div class="device"><b><span class="status"></span> DiscordBot · S:</b><div class="bar">CPU 07% <span>■</span>□□□□  RAM 44% <span>■■</span>□□□  DISK 18% <span>■</span>□□□□</div></div>
+          <div class="cat">      (\ /)
+   ヾ(&gt;᎑&lt;)ﾉ )))
+      ∧,,,∧
+     (◉_◉)
+     /づ♡
+
+MEOWNTING...</div>
+        </div>
+      </div>
+
+      <section>
+        <div class="sectionHead"><div><h2 class="ko">핵심 기능</h2><h2 class="en">Highlights</h2><p class="sub ko">파일 마운트부터 서버 작업까지 한 화면에서.</p><p class="sub en">From drive mounting to server operations in one place.</p></div></div>
+        <div class="grid">
+          <div class="card"><h3 class="ko">장비 등록과 자동 감지</h3><h3 class="en">Device registry & auto detect</h3><p class="ko">SSH 장비, PC, 노트북, VPS를 등록하고 온라인 상태를 주기적으로 확인합니다.</p><p class="en">Register SSH devices, PCs, laptops, and VPS machines, then watch their online status.</p></div>
+          <div class="card"><h3 class="ko">SSHFS-Win 마운트</h3><h3 class="en">SSHFS-Win mounting</h3><p class="ko">WinFsp + SSHFS-Win 기반으로 원격 경로를 Windows 드라이브처럼 붙입니다.</p><p class="en">Mount remote paths as Windows drives through WinFsp and SSHFS-Win.</p></div>
+          <div class="card"><h3 class="ko">시각적 상태 대시보드</h3><h3 class="en">Visual status dashboard</h3><p class="ko">온라인, 마운트, CPU, RAM, 디스크 상태를 간단한 바와 색상으로 표시합니다.</p><p class="en">Show online, mount, CPU, RAM, and disk state with compact bars and status colors.</p></div>
+          <div class="card"><h3 class="ko">터미널·VS Code·웹 연결</h3><h3 class="en">Terminal, VS Code, web</h3><p class="ko">선택한 장비를 터미널, VS Code Remote SSH, 웹 URL로 바로 엽니다.</p><p class="en">Jump into Terminal, VS Code Remote SSH, or web URLs for the selected device.</p></div>
+          <div class="card"><h3 class="ko">명령 프리셋과 즐겨찾기</h3><h3 class="en">Command presets & favorites</h3><p class="ko">자주 쓰는 SSH 명령과 원격 폴더를 버튼처럼 관리합니다.</p><p class="en">Keep frequent SSH commands and remote folders ready as quick actions.</p></div>
+          <div class="card"><h3 class="ko">키 사본과 권한 보정</h3><h3 class="en">Key copy & ACL hardening</h3><p class="ko">등록한 SSH key를 앱 데이터 폴더에 복사하고 Windows OpenSSH 권한 오류를 줄입니다.</p><p class="en">Copy selected SSH keys into the app data folder and harden ACLs for Windows OpenSSH.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sectionHead"><div><h2 class="ko">빠른 시작</h2><h2 class="en">Quick start</h2><p class="sub ko">저장소를 받은 뒤 아래 명령으로 빌드·실행합니다.</p><p class="sub en">Clone or download the repository, then build and run.</p></div></div>
+        <div class="steps">
+          <div class="card"><div class="stepNum">1</div><h3 class="ko">필수 도구 설치</h3><h3 class="en">Install dependencies</h3><p class="ko">.NET 8, WinFsp, SSHFS-Win을 설치합니다.</p><p class="en">Install .NET 8, WinFsp, and SSHFS-Win.</p></div>
+          <div class="card"><div class="stepNum">2</div><h3 class="ko">빌드</h3><h3 class="en">Build</h3><p><code>build.cmd</code></p></div>
+          <div class="card"><div class="stepNum">3</div><h3 class="ko">실행</h3><h3 class="en">Run</h3><p><code>RUN_RELEASE_DEBUG.cmd</code></p></div>
+        </div>
+        <div class="code" style="margin-top:16px"><code>winget install -e --id Microsoft.DotNet.SDK.8
+winget install -e --id WinFsp.WinFsp
+winget install -e --id SSHFS-Win.SSHFS-Win
+
+build.cmd
+RUN_RELEASE_DEBUG.cmd</code></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="ko">RemoteDock · 개인 서버 도킹 앱</div><div class="en">RemoteDock · Personal server docking app</div>
+      <div><a href="../README.md">README</a> · <a href="../RELEASE_NOTES.md">Release Notes</a></div>
+    </footer>
+  </div>
+  <script>
+    const root = document.body;
+    const ko = document.getElementById('btn-ko');
+    const en = document.getElementById('btn-en');
+    function setLang(lang){
+      root.classList.toggle('lang-ko', lang==='ko');
+      root.classList.toggle('lang-en', lang==='en');
+      ko.classList.toggle('active', lang==='ko');
+      en.classList.toggle('active', lang==='en');
+      document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
+      localStorage.setItem('rd-lang', lang);
+    }
+    ko.onclick=()=>setLang('ko'); en.onclick=()=>setLang('en');
+    const saved = localStorage.getItem('rd-lang');
+    const browserKo = (navigator.language||'').toLowerCase().startsWith('ko');
+    setLang(saved || (browserKo ? 'ko':'en'));
+  </script>
+</body>
+</html>

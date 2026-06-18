@@ -1,0 +1,41 @@
+# Build outputs
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Logs and temporary files
+*.log
+crash.log
+*.tmp
+*.bak
+*.local
+*.secret
+.env
+
+# Runtime user data
+profiles.json
+profiles.backup.json
+keys/
+
+# Private keys / secrets
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*_id_rsa
+*_id_ed25519
+
+# Packages / archives
+*.nupkg
+*.snupkg
+*.zip
+*.7z
+*.rar
+
+# Windows
+Thumbs.db
+Desktop.ini
