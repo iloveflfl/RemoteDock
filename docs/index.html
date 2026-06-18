@@ -21,11 +21,14 @@
     .lang button{border:0;background:transparent;color:var(--soft);font-weight:700;padding:8px 14px;border-radius:999px;cursor:pointer}.lang button.active{background:var(--ink);color:white}
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:rgba(255,255,255,.72);padding:8px 12px;border-radius:999px;color:var(--soft);font-size:14px}
     h1{font-size:clamp(38px,6vw,72px);line-height:.96;letter-spacing:-.07em;margin:18px 0 18px} .lead{font-size:clamp(17px,2.2vw,22px);color:var(--soft);max-width:760px;margin:0 0 26px}.actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:13px 18px;font-weight:800;border:1px solid var(--border);background:white;color:var(--ink);box-shadow:0 10px 30px rgba(35,33,30,.06)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{background:var(--accent2);text-decoration:none}.btn:hover{text-decoration:none;transform:translateY(-1px)}
+
+    .downloadPanel{margin-top:34px;background:rgba(255,255,255,.88);border:1px solid var(--border);border-radius:26px;padding:24px;box-shadow:0 14px 44px rgba(35,33,30,.08);display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center}
+    .downloadPanel h2{font-size:28px;margin:0 0 6px;letter-spacing:-.04em}.downloadPanel p{margin:0;color:var(--soft)}.downloadActions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}.btn.download{font-size:17px;padding:15px 20px;border-radius:16px}.smallNote{font-size:13px;color:var(--soft);margin-top:10px}.tag{display:inline-flex;align-items:center;border:1px solid var(--border);background:var(--muted);border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;color:var(--soft);margin-bottom:10px}
     .mock{background:#161514;color:#f8f2e9;border-radius:24px;padding:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08)}.mockTop{display:flex;gap:7px;margin-bottom:16px}.dot{width:10px;height:10px;border-radius:50%}.r{background:#f36b5d}.y{background:#f5be4f}.g{background:#62c46b}.device{background:#211f1d;border:1px solid #38332e;border-radius:18px;padding:14px;margin:10px 0}.device b{display:flex;align-items:center;gap:8px}.status{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}.bar{font-family:Cascadia Mono,Consolas,monospace;color:#e7d4c9}.bar span{color:#c2613e}.cat{font-family:Cascadia Mono,Consolas,monospace;white-space:pre;color:#f4eadf;text-align:center;margin:16px 0 4px;font-size:16px}
     section{margin-top:62px}.sectionHead{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}h2{font-size:32px;letter-spacing:-.04em;margin:0}.sub{color:var(--soft);margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:rgba(255,255,255,.82);border:1px solid var(--border);border-radius:22px;padding:20px;box-shadow:0 10px 36px rgba(35,33,30,.06)}.card h3{margin:0 0 8px;font-size:18px}.card p{margin:0;color:var(--soft)}
     .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stepNum{width:34px;height:34px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:12px}.code{background:#171614;color:#efe7df;border-radius:18px;padding:18px;overflow:auto;border:1px solid #282420}.code code{font-family:Cascadia Mono,Consolas,monospace;white-space:pre}
     footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--border);color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.ko,.en{display:none}.lang-ko .ko{display:revert}.lang-en .en{display:revert}
-    @media(max-width:860px){.hero,.grid,.steps{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.wrap{padding-top:20px}}
+    @media(max-width:860px){.hero,.grid,.steps,.downloadPanel{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.wrap{padding-top:20px}.downloadActions{justify-content:flex-start}}
   </style>
 </head>
 <body class="lang-en">
@@ -58,14 +61,34 @@
           <div class="device"><b><span class="status"></span> PiHome · R:</b><div class="bar">CPU 12% <span>■</span>□□□□  RAM 38% <span>■■</span>□□□  DISK 03% <span>■</span>□□□□</div></div>
           <div class="device"><b><span class="status"></span> DiscordBot · S:</b><div class="bar">CPU 07% <span>■</span>□□□□  RAM 44% <span>■■</span>□□□  DISK 18% <span>■</span>□□□□</div></div>
           <div class="cat">      (\ /)
-   ヾ(&gt;᎑&lt;)ﾉ )))
-      ∧,,,∧
+      ヾ(&gt;᎑&lt;)ﾉ )))
+      ∧,,∧
      (◉_◉)
      /づ♡
 
 MEOWNTING...</div>
         </div>
       </div>
+
+      <section class="downloadPanel" id="download" aria-label="RemoteDock installer download">
+        <div>
+          <div class="tag ko">최신 설치 파일</div><div class="tag en">Latest installer</div>
+          <h2 class="ko">RemoteDock 전체 설치 마법사</h2>
+          <h2 class="en">RemoteDock Full Setup Wizard</h2>
+          <p class="ko">RemoteDock와 마운트에 필요한 WinFsp, SSHFS-Win 설치 확인을 포함한 Windows용 설치 파일입니다.</p>
+          <p class="en">A Windows setup package for RemoteDock with prerequisite checks for WinFsp and SSHFS-Win.</p>
+          <div class="smallNote ko">권장 배포 파일: <b>RemoteDock_FullSetup_v18_win-x64.exe</b></div>
+          <div class="smallNote en">Recommended asset: <b>RemoteDock_FullSetup_v18_win-x64.exe</b></div>
+        </div>
+        <div class="downloadActions">
+          <a class="btn primary download" href="https://github.com/iloveflfl/RemoteDock/releases/latest/download/RemoteDock_FullSetup_v18_win-x64.exe">
+            <span class="ko">설치 EXE 다운로드</span><span class="en">Download Setup EXE</span>
+          </a>
+          <a class="btn" href="https://github.com/iloveflfl/RemoteDock/releases/latest">
+            <span class="ko">릴리즈 페이지</span><span class="en">Release page</span>
+          </a>
+        </div>
+      </section>
 
       <section>
         <div class="sectionHead"><div><h2 class="ko">핵심 기능</h2><h2 class="en">Highlights</h2><p class="sub ko">파일 마운트부터 서버 작업까지 한 화면에서.</p><p class="sub en">From drive mounting to server operations in one place.</p></div></div>
