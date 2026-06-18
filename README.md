@@ -9,6 +9,7 @@ RemoteDock는 라즈베리파이, 리눅스 서버, VPS, 윈도우 PC, 노트북
 > This repository README is a language gateway. Open the Korean or English README above, or enable GitHub Pages from the `/docs` folder for the bilingual landing page.
 >
 > 이 README는 언어 선택용 입구입니다. 위의 한국어/영문 README를 열거나, GitHub Pages를 `/docs` 폴더 기준으로 켜면 한/영 전환 랜딩 페이지를 사용할 수 있습니다.
+<img width="1660" height="961" alt="image" src="https://github.com/user-attachments/assets/8874ae72-fe8c-4ac1-be0e-f313459429d0" />
 
 ## Quick start
 
